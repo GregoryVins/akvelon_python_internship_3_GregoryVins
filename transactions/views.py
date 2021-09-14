@@ -32,4 +32,5 @@ def profit(request):
             return Response(data, status=status.HTTP_200_OK)
         except Exception as e:
             pass
-    return Response(dict(error='failed'), status=status.HTTP_403_FORBIDDEN)
+    return Response(dict(status='Failed. You have to send correct data'),
+                    status=status.HTTP_403_FORBIDDEN)
