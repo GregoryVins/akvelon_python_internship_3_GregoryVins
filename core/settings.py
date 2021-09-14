@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -85,6 +86,16 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': os.getenv("PGDB_NAME"),
+#         'USER': os.getenv("PGDB_USER"),
+#         'PASSWORD': os.getenv("PGDB_PASSWORD"),
+#         'HOST': os.getenv("PGDB_HOST"),
+#         'PORT': os.getenv("PGDB_PORT"),
+#     }
+# }
 
 
 # Password validation
