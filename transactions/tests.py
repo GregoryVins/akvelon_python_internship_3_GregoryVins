@@ -14,14 +14,14 @@ class TransactionTestCase(TestCase):
 
     def test_get_transaction_list(self):
         """
-        Successful request to transaction list
+        Request transaction list.
         """
         response = self.client.get(self.url)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
     def test_get_transaction_detail(self):
         """
-        Successful request to transaction detail
+        Request transaction detail information.
         """
         response = self.client.get(f'{self.url}{self.transaction.id}/')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
@@ -29,48 +29,45 @@ class TransactionTestCase(TestCase):
 
     def test_create_transaction_success(self):
         """
-        Successful creating of transaction
+        Request to success create new transaction.
         """
         data = {
-            "user": self.user.id,
-            "amount": 100,
+            'user': self.user.id,
+            'amount': 1234
         }
         response = self.client.post(self.url, data)
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
 
     def test_create_transaction_fail(self):
         """
-        Failed creation of transaction
+        Request to fail create new transaction.
         """
-        data = {
-            "user": self.user
-        }
-        response = self.client.post(self.url, data)
+        response = self.client.post(self.url, {})
         self.assertNotEqual(response.status_code, status.HTTP_201_CREATED)
 
     def test_update_transaction_success(self):
         """
-        Successful transaction update
+        Successful edit transaction.
         """
         data = {
-            "id": self.transaction.id,
-            "user": self.transaction.user.id,
-            "amount": 1111,
-            "date": self.transaction.date
+            'id': self.transaction.id,
+            'user': self.transaction.user_id,
+            'amount': 999,
+            'date': self.transaction.date
         }
         response = self.client.put(f'{self.url}{self.transaction.id}/', data, content_type='application/json')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
     def test_update_transaction_fail(self):
         """
-        Failed transaction update
+        Successful edit transaction.
         """
-        response = self.client.put(f'{self.url}{self.transaction.id}/', {}, content_type='application/json')
+        response = self.client.put(f'{self.url}{self.transaction}/', {})
         self.assertNotEqual(response.status_code, status.HTTP_200_OK)
 
     def test_delete_transaction(self):
         """
-        Successful delete transaction
+        Successful delete transaction.
         """
         response = self.client.delete(f'{self.url}{self.transaction.id}/')
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
