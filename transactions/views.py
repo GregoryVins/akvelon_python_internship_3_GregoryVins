@@ -17,12 +17,14 @@ class TransactionViewSet(ModelViewSet):
         return Transaction.objects.all()
 
 
-@api_view(['GET'])
-def profit(request):
-    start = request.query_params.get("start", False)
-    finish = request.query_params.get("finish", False)
-    user_id = request.query_params.get("userId", None)
-    if start and finish and user_id:
+@api_view(['POST'])
+def profit(request, *args, **kwargs):
+    start = request.data.get("start", False)
+    finish = request.data.get("finish", False)
+    user_id = request.data.get("userId", None)
+    if start and user_id:
+        if not finish:
+            finish = start
         try:
             transactions = Transaction.objects.filter(date__range=[start, finish], user_id=user_id)
             total = 0
