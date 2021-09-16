@@ -19,11 +19,13 @@ class TransactionViewSet(ModelViewSet):
 
 class ProfitAPIView(APIView):
     """
-    This text is the description for this API
+    Filter by date and user, you have to send some data
         ---
-        userId -- You have to send user id
-        start -- Single date or start date, ex. "2021-09-01"
-        finish -- Finish date
+        userId -uuid- You have to send user id, required*
+        start -str- Single date or start date, ex. "2021-09-01", required*
+        finish -str- Finish date
+
+    If you want to find data for single day, you can send 'start' parameter only, without finish
     """
 
     @staticmethod
@@ -42,6 +44,6 @@ class ProfitAPIView(APIView):
                 data = dict(start=start, finish=finish, user_id=user_id, profit=total)
                 return Response(data, status=status.HTTP_200_OK)
             except Exception as e:
-                print('\nerror\nerror\n', repr(e))
+                print('\nerror\n', repr(e))
         return Response(dict(status='Failed. You have to send correct data'),
                         status=status.HTTP_403_FORBIDDEN)
