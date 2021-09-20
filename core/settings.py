@@ -87,16 +87,26 @@ WSGI_APPLICATION = 'core.wsgi.application'
 #         'NAME': BASE_DIR / 'db.sqlite3',
 #     }
 # }
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': os.getenv("PGDB_NAME"),
-        'USER': os.getenv("PGDB_USER"),
-        'PASSWORD': os.getenv("PGDB_PASSWORD"),
-        'HOST': os.getenv("PGDB_HOST"),
-        'PORT': os.getenv("PGDB_PORT"),
-    }
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'project',
+        'USER': 'project',
+        'PASSWORD': 'cevhfrdtxyjqnmvs',
+    },
 }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': os.getenv("PGDB_NAME"),
+#         'USER': os.getenv("PGDB_USER"),
+#         'PASSWORD': os.getenv("PGDB_PASSWORD"),
+#         'HOST': os.getenv("PGDB_HOST"),
+#         'PORT': os.getenv("PGDB_PORT"),
+#     }
+# }
 
 
 # Password validation
