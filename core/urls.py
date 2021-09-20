@@ -10,9 +10,11 @@ router = DefaultRouter()
 router.register('users', CustomUserViewSet, basename='users')
 router.register('transactions', TransactionViewSet, basename='transactions')
 
+schema_view = get_swagger_view(title='REST API Document')
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include(router.urls)),
     path('api/profit/', ProfitAPIView.as_view()),
-    path('api/doc/', get_swagger_view(title='REST API Document'))
+    path('api/doc/', schema_view)
 ]
