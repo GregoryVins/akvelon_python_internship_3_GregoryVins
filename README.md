@@ -11,7 +11,7 @@ Get started with docker:
 docker-compose up
 ```
 
-To run from local computer:
+To run from local machine:
 ```
 pip install -r requirements.txt
 python manage.py migrate
