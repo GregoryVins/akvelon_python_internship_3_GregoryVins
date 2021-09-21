@@ -90,6 +90,6 @@ class ProfitAPIView(APIView):
 
                 return Response(result, status=status.HTTP_200_OK)
             except Exception as e:
-                print(f'\n{repr(e)=}\n')
+                print(e)
         return Response(dict(status='Failed. You have to send correct data'),
                         status=status.HTTP_403_FORBIDDEN)
